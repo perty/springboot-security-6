@@ -25,6 +25,7 @@ on roles. A user with role `ADMIN` list all users, while a user with role
 2. Run the script `start_db.sh` to start a PostgreSQL container. It will
 download the image if you don't have it.
 3. Run the Spring Boot application. See [SpringSecurityUpdatedApplication](src%2Fmain%2Fjava%2Fcom%2FspringSecurityUpdated%2FspringSecurityUpdated%2FSpringSecurityUpdatedApplication.java).
+It will start the application on port [3030](http://localhost:3030).
 4. Create a user by using the endpoint `POST /user/save` with a JSON body like
     ```json
     {
