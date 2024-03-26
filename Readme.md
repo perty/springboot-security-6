@@ -2,7 +2,7 @@
 
 I have struggled to find a working example of Spring Security 6.
 
-Finally, I found this example by @phegondev which actually works, contrary
+Finally, I found this example by [@phegondev](https://github.com/phegondev) which actually works, contrary
 to the other examples I found on internet.
 
 So I forked it.
