@@ -1,10 +1,7 @@
 package com.springSecurityUpdated.springSecurityUpdated.model;
 
-
 import jakarta.persistence.*;
-import lombok.Data;
 
-@Data
 @Entity
 @Table(name = "ourusers")
 public class OurUser {
@@ -16,4 +13,24 @@ public class OurUser {
     private String email;
     private String password;
     private String roles;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String pass) {
+        this.password = pass;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
 }
