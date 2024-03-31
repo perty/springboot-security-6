@@ -24,10 +24,6 @@ public class Controller {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/")
-    public String goH0me() {
-        return "This page is publicly accessible without needing authentication ";
-    }
 
     @PostMapping("/user/save")
     public ResponseEntity<Object> saveUser(@RequestBody OurUser ourUser) {
