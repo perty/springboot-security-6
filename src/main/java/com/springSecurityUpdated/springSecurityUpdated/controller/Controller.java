@@ -26,8 +26,9 @@ public class Controller {
     }
 
     @GetMapping("/mylogin")
-    public ResponseEntity<Object> getLoginForm() {
-        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/mylogin-form.html")
+    public ResponseEntity<Object> getLoginForm(@RequestParam(name="error", required = false) String error){
+        String formUrl = "/mylogin-form.html" + (error != null ? "?error" : "");
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", formUrl)
                 .build();
     }
 

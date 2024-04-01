@@ -1,9 +1,23 @@
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Spring Boot Security</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('error')) {
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.style.display = 'block';
+            }
+        };
+    </script>
 </head>
 <body>
     <h1>My Login</h1>
+    <div id="error-message" style="display: none; color: red;">
+        Login failed 😭.
+    </div>
     <form class="form-signin" method="post" action="/mylogin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <p>
