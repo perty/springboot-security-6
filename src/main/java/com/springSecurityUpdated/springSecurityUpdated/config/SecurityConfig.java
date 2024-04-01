@@ -23,10 +23,21 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index.html", "/user/save", "/product/all").permitAll()
+                        .requestMatchers(
+                                "/",
+                                "/css/**",
+                                "/index.html",
+                                "/mylogin-form.html",
+                                "/user/save",
+                                "/product/all")
+                        .permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
-                .formLogin(withDefaults())
+                .formLogin(form -> form
+                        .loginPage("/mylogin")
+                        .permitAll()
+                        .defaultSuccessUrl("/users/single", true)
+                )
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
 

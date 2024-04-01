@@ -3,6 +3,7 @@ package com.springSecurityUpdated.springSecurityUpdated.controller;
 import com.springSecurityUpdated.springSecurityUpdated.model.OurUser;
 import com.springSecurityUpdated.springSecurityUpdated.repository.OurUserRepo;
 import com.springSecurityUpdated.springSecurityUpdated.repository.ProductRepo;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,11 @@ public class Controller {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @GetMapping("/mylogin")
+    public ResponseEntity<Object> getLoginForm() {
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/mylogin-form.html")
+                .build();
+    }
 
     @PostMapping("/user/save")
     public ResponseEntity<Object> saveUser(@RequestBody OurUser ourUser) {
