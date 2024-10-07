@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/mylogin")
                         .permitAll()
-                        .defaultSuccessUrl("/users/single", true)
+                        .defaultSuccessUrl("/user/profile.html", false)
                 )
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();

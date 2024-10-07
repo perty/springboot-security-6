@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Welcome to your profile page</h1>
+<div>
+    <p>Email: <span id="user-email"></span></p>
+    <p>Roles: <span id="user-roles"></span></p>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/users/single')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('user-email').textContent = data.email;
+                document.getElementById('user-roles').textContent = data.roles;
+            })
+            .catch(error => console.error('Error fetching user details:', error));
+    });
+</script>
+</body>
+</html>

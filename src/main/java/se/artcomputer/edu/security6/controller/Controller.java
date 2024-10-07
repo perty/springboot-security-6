@@ -55,8 +55,9 @@ public class Controller {
 
     @GetMapping("/users/single")
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
-    public ResponseEntity<Object> getMyDetails() {
-        return ResponseEntity.ok(ourUserRepo.findByEmail(getLoggedInUserDetails().getUsername()));
+    public ResponseEntity<UserSingleResponse> getMyDetails() {
+        OurUser byEmail = ourUserRepo.findByEmail(getLoggedInUserDetails().getUsername()).orElseThrow();
+        return ResponseEntity.ok(new UserSingleResponse(byEmail.getEmail(), byEmail.getRoles()));
     }
 
     public UserDetails getLoggedInUserDetails() {
