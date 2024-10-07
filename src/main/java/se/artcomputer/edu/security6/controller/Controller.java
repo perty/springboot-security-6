@@ -42,7 +42,7 @@ public class Controller {
         return ResponseEntity.status(404).body("Error, User Not Saved");
     }
 
-    @GetMapping("/product/all")
+    @GetMapping("/products/all")
     public ResponseEntity<AllProductsResponse> getAllProducts() {
         return ResponseEntity.ok(AllProductsResponse.from(productRepo.findAll()));
     }

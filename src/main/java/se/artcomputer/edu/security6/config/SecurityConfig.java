@@ -37,7 +37,8 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/index.html",
                                 "/mylogin-form.html",
-                                "/product/all")
+                                "/public/**",
+                                "/products/all")
                         .permitAll() // permit all to these paths
                         .anyRequest()
                         .authenticated() // all other requests need to be authenticated

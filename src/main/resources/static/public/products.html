@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our products</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Our products</h1>
+<div>
+    <p>
+        Here are our products.
+    </p>
+    <ul id="product-list"></ul>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/products/all')
+            .then(response => response.json())
+            .then(products => {
+                const productList = document.getElementById('product-list');
+                products.products.forEach(product => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = product.name + ' - ' + product.description;
+                    productList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    });
+</script>
+</body>
+</html>
