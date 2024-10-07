@@ -28,10 +28,11 @@ public class SecurityConfig {
                                 "/css/**",
                                 "/index.html",
                                 "/mylogin-form.html",
-                                "/user/save",
                                 "/product/all")
-                        .permitAll()
-                        .anyRequest().authenticated())
+                        .permitAll() // permit all to these paths
+                        .anyRequest()
+                        .authenticated() // all other requests need to be authenticated
+                )
                 .httpBasic(withDefaults())
                 .formLogin(form -> form
                         .loginPage("/mylogin")
