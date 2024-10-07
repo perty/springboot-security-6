@@ -1,5 +1,7 @@
 # Spring Security 6 Example
 
+![Build Status](https://github.com/perty/springboot-security-6/actions/workflows/maven.yml/badge.svg)
+
 I have struggled to find a working example of [Spring Security 6](https://spring.io/projects/spring-security).
 
 Finally, I found this example by [@phegondev](https://github.com/phegondev) which actually works, contrary
