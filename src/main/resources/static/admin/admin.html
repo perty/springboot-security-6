@@ -7,8 +7,17 @@
 <body>
 <h1>Administrator's page</h1>
 <div id="error-message" style="color: red; display: none;">You do not have permission to access this page.</div>
-<div>
-    <table id="user-table" style="display: none;">
+<div id="admin-content" style="display: none;">
+    <form id="add-user-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="roles">Roles:</label>
+        <input type="text" id="roles" name="roles" required>
+        <label for="initial-pw">Initial password:</label>
+        <input type="text" id="initial-pw" name="initial-pw" required>
+        <button type="submit">Add User</button>
+    </form>
+    <table id="user-table">
         <thead>
             <tr>
                 <th>Email</th>
@@ -44,9 +53,45 @@
                     row.appendChild(rolesCell);
                     userTableBody.appendChild(row);
                 });
-                document.getElementById('user-table').style.display = 'table';
+                document.getElementById('admin-content').style.display = 'block';
             })
             .catch(error => console.error('Error fetching users:', error));
+
+        document.getElementById('add-user-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const roles = document.getElementById('roles').value;
+            const password = document.getElementById('initial-pw').value;
+
+            fetch('/users/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, roles, password })
+            })
+            .then(response => {
+                if (response.status === 409) {
+                    alert('Error: Email is already taken');
+                    return Promise.reject('Conflict');
+                }
+                return response.json();
+            })
+            .then(user => {
+                const userTableBody = document.querySelector('#user-table tbody');
+                const row = document.createElement('tr');
+                const emailCell = document.createElement('td');
+                const rolesCell = document.createElement('td');
+
+                emailCell.textContent = user.email;
+                rolesCell.textContent = user.roles;
+
+                row.appendChild(emailCell);
+                row.appendChild(rolesCell);
+                userTableBody.appendChild(row);
+            })
+            .catch(error => console.error('Error adding user:', error));
+        });
     });
 </script>
 </body>

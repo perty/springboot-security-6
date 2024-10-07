@@ -14,6 +14,15 @@ public class OurUser {
     private String password;
     private String roles;
 
+    public OurUser() {
+    }
+
+    public OurUser(String email, String roles, String encode) {
+        this.email = email;
+        this.roles = roles;
+        this.password = encode;
+    }
+
     public String getEmail() {
         return email;
     }

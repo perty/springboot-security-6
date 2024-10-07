@@ -12,6 +12,8 @@ import se.artcomputer.edu.security6.model.OurUser;
 import se.artcomputer.edu.security6.repository.OurUserRepo;
 import se.artcomputer.edu.security6.repository.ProductRepo;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping
 public class Controller {
@@ -32,14 +34,19 @@ public class Controller {
                 .build();
     }
 
-    @PostMapping("/user/save")
-    public ResponseEntity<Object> saveUser(@RequestBody OurUser ourUser) {
-        ourUser.setPassword(passwordEncoder.encode(ourUser.getPassword()));
+    @PostMapping("/users/save")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Object> saveUser(@RequestBody SaveUserRequest saveUserRequest) {
+        Optional<OurUser> checkUser = ourUserRepo.findByEmail(saveUserRequest.email());
+        if (checkUser.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+        }
+        OurUser ourUser = new OurUser(saveUserRequest.email(), saveUserRequest.roles(), passwordEncoder.encode(saveUserRequest.password()));
         OurUser result = ourUserRepo.save(ourUser);
         if (result.getId() > 0) {
-            return ResponseEntity.ok("User Was Saved");
+            return ResponseEntity.ok(new UserSingleResponse(result.getEmail(), result.getRoles()));
         }
-        return ResponseEntity.status(404).body("Error, User Not Saved");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error, User Not Saved");
     }
 
     @GetMapping("/products/all")
