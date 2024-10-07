@@ -43,8 +43,8 @@ public class Controller {
     }
 
     @GetMapping("/product/all")
-    public ResponseEntity<Object> getAllProducts() {
-        return ResponseEntity.ok(productRepo.findAll());
+    public ResponseEntity<AllProductsResponse> getAllProducts() {
+        return ResponseEntity.ok(AllProductsResponse.from(productRepo.findAll()));
     }
 
     @GetMapping("/users/all")
