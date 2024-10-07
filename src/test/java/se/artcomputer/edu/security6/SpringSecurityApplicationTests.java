@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(properties = {"spring.profiles.active=test"})
-class SpringSecurityUpdatedApplicationTests {
+class SpringSecurityApplicationTests {
 
 	@Test
 	void contextLoads() {
