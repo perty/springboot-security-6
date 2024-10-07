@@ -1,8 +1,5 @@
 package se.artcomputer.edu.security6.controller;
 
-import se.artcomputer.edu.security6.model.OurUser;
-import se.artcomputer.edu.security6.repository.OurUserRepo;
-import se.artcomputer.edu.security6.repository.ProductRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import se.artcomputer.edu.security6.model.OurUser;
+import se.artcomputer.edu.security6.repository.OurUserRepo;
+import se.artcomputer.edu.security6.repository.ProductRepo;
 
 @RestController
 @RequestMapping
@@ -26,7 +26,7 @@ public class Controller {
     }
 
     @GetMapping("/mylogin")
-    public ResponseEntity<Object> getLoginForm(@RequestParam(name="error", required = false) String error){
+    public ResponseEntity<Object> getLoginForm(@RequestParam(name = "error", required = false) String error) {
         String formUrl = "/mylogin-form.html" + (error != null ? "?error" : "");
         return ResponseEntity.status(HttpStatus.FOUND).header("Location", formUrl)
                 .build();
@@ -58,6 +58,24 @@ public class Controller {
     public ResponseEntity<UserSingleResponse> getMyDetails() {
         OurUser byEmail = ourUserRepo.findByEmail(getLoggedInUserDetails().getUsername()).orElseThrow();
         return ResponseEntity.ok(new UserSingleResponse(byEmail.getEmail(), byEmail.getRoles()));
+    }
+
+    @PostMapping("/users/change-password")
+    @PreAuthorize("hasAuthority('USER')")
+    public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
+        UserDetails userDetails = getLoggedInUserDetails();
+        if (userDetails == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not authenticated");
+        }
+
+        OurUser user = ourUserRepo.findByEmail(userDetails.getUsername()).orElseThrow();
+        if (!passwordEncoder.matches(changePasswordRequest.currentPassword(), user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Current password is incorrect");
+        }
+
+        user.setPassword(passwordEncoder.encode(changePasswordRequest.newPassword()));
+        ourUserRepo.save(user);
+        return ResponseEntity.ok("Password changed successfully");
     }
 
     public UserDetails getLoggedInUserDetails() {
