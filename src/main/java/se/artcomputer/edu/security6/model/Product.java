@@ -1,4 +1,4 @@
-package com.springSecurityUpdated.springSecurityUpdated.model;
+package se.artcomputer.edu.security6.model;
 
 import jakarta.persistence.*;
 

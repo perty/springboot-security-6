@@ -1,6 +1,6 @@
-package com.springSecurityUpdated.springSecurityUpdated.config;
+package se.artcomputer.edu.security6.config;
 
-import com.springSecurityUpdated.springSecurityUpdated.model.OurUser;
+import se.artcomputer.edu.security6.model.OurUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.springSecurityUpdated.springSecurityUpdated.config;
+package se.artcomputer.edu.security6.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

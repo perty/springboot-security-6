@@ -1,7 +1,7 @@
-package com.springSecurityUpdated.springSecurityUpdated.config;
+package se.artcomputer.edu.security6.config;
 
-import com.springSecurityUpdated.springSecurityUpdated.model.OurUser;
-import com.springSecurityUpdated.springSecurityUpdated.repository.OurUserRepo;
+import se.artcomputer.edu.security6.model.OurUser;
+import se.artcomputer.edu.security6.repository.OurUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;

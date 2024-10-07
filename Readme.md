@@ -1,6 +1,6 @@
 # Spring Security 6 Example
 
-I have struggled to find a working example of Spring Security 6.
+I have struggled to find a working example of [Spring Security 6](https://spring.io/projects/spring-security).
 
 Finally, I found this example by [@phegondev](https://github.com/phegondev) which actually works, contrary
 to the other examples I found on internet.
@@ -19,8 +19,11 @@ has annotations that restrict access to the endpoints, based
 on roles. A user with role `ADMIN` list all users, while a user with role 
 `USER` can only see their own user.
 
-## V2
-In v2, a custom login form was added. Since I use static resources, I had to add an endpoint to redirect to the form, else it simply didn't work. As you can see in the `SecurityConfig` class, I use `formLogin` configuration with the endpoint /`mylogin`. When the form was in static resources, nothing happened on submit, it just came back to the form. But with the endpoint that redirects to `/mylogin-form.html`, it worked.
+## V2 a custom login form
+In v2, a custom login form was added. Since I use static resources, I had to add an endpoint to redirect to the form, 
+else it simply didn't work. As you can see in the `SecurityConfig` class, I use `formLogin` configuration with the 
+endpoint /`mylogin`. When the form was in static resources, nothing happened on submit, it just came back to the form. 
+But with the endpoint that redirects to `/mylogin-form.html`, it worked.
 
 ## Running the example
 

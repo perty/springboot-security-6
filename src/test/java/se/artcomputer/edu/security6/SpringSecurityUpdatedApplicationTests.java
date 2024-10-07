@@ -1,4 +1,4 @@
-package com.springSecurityUpdated.springSecurityUpdated;
+package se.artcomputer.edu.security6;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

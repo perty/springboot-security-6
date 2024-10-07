@@ -1,8 +1,8 @@
-package com.springSecurityUpdated.springSecurityUpdated.controller;
+package se.artcomputer.edu.security6.controller;
 
-import com.springSecurityUpdated.springSecurityUpdated.model.OurUser;
-import com.springSecurityUpdated.springSecurityUpdated.repository.OurUserRepo;
-import com.springSecurityUpdated.springSecurityUpdated.repository.ProductRepo;
+import se.artcomputer.edu.security6.model.OurUser;
+import se.artcomputer.edu.security6.repository.OurUserRepo;
+import se.artcomputer.edu.security6.repository.ProductRepo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,6 +1,6 @@
-package com.springSecurityUpdated.springSecurityUpdated.repository;
+package se.artcomputer.edu.security6.repository;
 
-import com.springSecurityUpdated.springSecurityUpdated.model.OurUser;
+import se.artcomputer.edu.security6.model.OurUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
