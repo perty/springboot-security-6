@@ -12,6 +12,9 @@ So I forked it.
 The first change was to use PostgreSQL instead of MySQL and running it in a Docker 
 container. See [start_db.sh](start_db.sh) script for details.
 
+The changes are marked with version tags. This is so that you can understand it 
+peace by peace. 
+
 ## About the example
 
 The example has two entities, User and Product. 
