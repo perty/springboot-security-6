@@ -49,8 +49,8 @@ public class Controller {
 
     @GetMapping("/users/all")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Object> getAllUsers() {
-        return ResponseEntity.ok(ourUserRepo.findAll());
+    public ResponseEntity<AllUsersResponse> getAllUsers() {
+        return ResponseEntity.ok(AllUsersResponse.from(ourUserRepo.findAll()));
     }
 
     @GetMapping("/users/single")

@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Administrator's page</h1>
+<div id="error-message" style="color: red; display: none;">You do not have permission to access this page.</div>
+<div>
+    <table id="user-table" style="display: none;">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- User rows will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('/users/all')
+            .then(response => {
+                if (response.status === 403) {
+                    document.getElementById('error-message').style.display = 'block';
+                    return Promise.reject('Forbidden');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const userTableBody = document.querySelector('#user-table tbody');
+                data.users.forEach(user => {
+                    const row = document.createElement('tr');
+                    const emailCell = document.createElement('td');
+                    const rolesCell = document.createElement('td');
+
+                    emailCell.textContent = user.email;
+                    rolesCell.textContent = user.roles;
+
+                    row.appendChild(emailCell);
+                    row.appendChild(rolesCell);
+                    userTableBody.appendChild(row);
+                });
+                document.getElementById('user-table').style.display = 'table';
+            })
+            .catch(error => console.error('Error fetching users:', error));
+    });
+</script>
+</body>
+</html>
