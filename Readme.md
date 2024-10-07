@@ -40,7 +40,7 @@ a product. See [V3__Initial_setup.sql](src/main/resources/db/migration/V1__Initi
 1. Start your Docker engine.
 2. Run the script `start_db.sh` to start a PostgreSQL container. It will
 download the image if you don't have it.
-3. Run the Spring Boot application. See [SpringSecurityUpdatedApplication](src/main/java/se/artcomputer/edu/security6/SpringSecurityUpdatedApplication.java).
+3. Run the Spring Boot application. See [SpringSecurityApplication](src/main/java/se/artcomputer/edu/security6/SpringSecurityApplication.java).
 It will start the application on port [3030](http://localhost:3030).
 4. Click on the `My Page` link. You should see a login form.
 5. Log in with the user you created.
