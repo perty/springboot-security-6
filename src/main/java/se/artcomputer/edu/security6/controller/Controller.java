@@ -67,6 +67,20 @@ public class Controller {
         return ResponseEntity.ok(new UserSingleResponse(byEmail.getEmail(), byEmail.getRoles()));
     }
 
+    @PostMapping("/users/reset-password")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<Object> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
+        Optional<OurUser> userOptional = ourUserRepo.findByEmail(resetPasswordRequest.email());
+        if (userOptional.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        OurUser user = userOptional.get();
+        user.setPassword(passwordEncoder.encode(resetPasswordRequest.newPassword()));
+        ourUserRepo.save(user);
+        return ResponseEntity.ok("Password reset successfully");
+    }
+
     @PostMapping("/users/change-password")
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<Object> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
