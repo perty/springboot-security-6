@@ -53,5 +53,5 @@ download the image if you don't have it.
 3. Run the Spring Boot application. See [SpringSecurityApplication](src/main/java/se/artcomputer/edu/security6/SpringSecurityApplication.java).
 It will start the application on port [3030](http://localhost:3030).
 4. Click on the `My Page` link. You should see a login form.
-5. Log in with the user you created.
+5. Log in with user `admin@a.b` and password `admin`.
 
