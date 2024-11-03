@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import se.artcomputer.edu.security6.model.OurUser;
 import se.artcomputer.edu.security6.repository.OurUserRepo;
-import se.artcomputer.edu.security6.repository.ProductRepo;
 
 import java.util.Optional;
 
@@ -18,12 +17,10 @@ import java.util.Optional;
 @RequestMapping
 public class Controller {
     private final OurUserRepo ourUserRepo;
-    private final ProductRepo productRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public Controller(OurUserRepo ourUserRepo, ProductRepo productRepo, PasswordEncoder passwordEncoder) {
+    public Controller(OurUserRepo ourUserRepo, PasswordEncoder passwordEncoder) {
         this.ourUserRepo = ourUserRepo;
-        this.productRepo = productRepo;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -47,11 +44,6 @@ public class Controller {
             return ResponseEntity.ok(new UserSingleResponse(result.getEmail(), result.getRoles()));
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error, User Not Saved");
-    }
-
-    @GetMapping("/products/all")
-    public ResponseEntity<AllProductsResponse> getAllProducts() {
-        return ResponseEntity.ok(AllProductsResponse.from(productRepo.findAll()));
     }
 
     @GetMapping("/users/all")
