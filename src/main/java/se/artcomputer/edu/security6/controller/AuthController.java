@@ -15,11 +15,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping
-public class Controller {
+public class AuthController {
     private final OurUserRepo ourUserRepo;
     private final PasswordEncoder passwordEncoder;
 
-    public Controller(OurUserRepo ourUserRepo, PasswordEncoder passwordEncoder) {
+    public AuthController(OurUserRepo ourUserRepo, PasswordEncoder passwordEncoder) {
         this.ourUserRepo = ourUserRepo;
         this.passwordEncoder = passwordEncoder;
     }
