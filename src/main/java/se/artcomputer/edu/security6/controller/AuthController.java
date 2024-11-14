@@ -24,6 +24,12 @@ public class AuthController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @GetMapping("/login")
+    public ResponseEntity<Object> login() {
+        return ResponseEntity.status(HttpStatus.FOUND).header("Location", "/user/profile.html")
+                .build();
+    }
+
     @GetMapping("/mylogin")
     public ResponseEntity<Object> getLoginForm(@RequestParam(name = "error", required = false) String error) {
         String formUrl = "/mylogin-form.html" + (error != null ? "?error" : "");
