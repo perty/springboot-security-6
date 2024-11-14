@@ -70,3 +70,13 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background-color: #ffffff;
 }
+
+.homeButton {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.homeButton button {
+    margin: 0;
+}

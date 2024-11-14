@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+<div class="homeButton">
+    <a href="/">
+        <button>Back to home</button>
+    </a>
+</div>
 <h1>Our products</h1>
 <div>
     <p>
@@ -13,7 +18,7 @@
     <ul id="product-list"></ul>
 </div>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         fetch('/products/all')
             .then(response => response.json())
             .then(products => {
