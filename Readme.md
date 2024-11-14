@@ -19,7 +19,7 @@ peace by peace.
 
 The example has two entities, User and Product.
 
-The [Controller](src/main/java/se/artcomputer/edu/security6/controller/Controller.java)
+The [AuthController](src/main/java/se/artcomputer/edu/security6/controller/AuthController.java)
 has annotations that restrict access to the endpoints, based on roles. A user with role `ADMIN` may list all users,
 while
 a user with role `USER` can only see their own information.
@@ -43,7 +43,7 @@ nothing special was needed.
 
 Flyway is used to set up an empty database with a schema. The database is populated with a user with role `USER`
 and a user with role `ADMIN`. The password is `user` and `admin`, respectively. It also populates the database with
-a product. See [V3__Initial_setup.sql](src/main/resources/db/migration/V1__Initial_setup.sql).
+a product. See [V1__Initial_setup.sql](src/main/resources/db/migration/V1__Initial_setup.sql).
 
 ## V4 user management
 
