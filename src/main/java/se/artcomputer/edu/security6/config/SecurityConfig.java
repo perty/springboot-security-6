@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 
@@ -22,12 +22,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-
-    private final AuthenticationSuccessHandler customAuthenticationSuccessHandler;
-
-    public SecurityConfig(AuthenticationSuccessHandler customAuthenticationSuccessHandler) {
-        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,16 +41,20 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/mylogin")
                         .permitAll()
-                        .successHandler(this.customAuthenticationSuccessHandler)
+                        .successHandler(savedRequestAwareAuthenticationSuccessHandler())
                 )
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
-
     }
 
     @Bean
     public UserDetailsService userDetailsService(){
         return new OurUserInfoUserDetailsService();
+    }
+
+    @Bean
+    public SavedRequestAwareAuthenticationSuccessHandler savedRequestAwareAuthenticationSuccessHandler() {
+        return new SavedRequestAwareAuthenticationSuccessHandler();
     }
 
     @Bean
