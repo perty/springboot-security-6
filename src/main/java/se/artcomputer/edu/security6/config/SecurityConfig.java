@@ -43,6 +43,9 @@ public class SecurityConfig {
                         .permitAll()
                         .successHandler(savedRequestAwareAuthenticationSuccessHandler())
                 )
+                .rememberMe(rememberMe -> rememberMe
+                        .userDetailsService(userDetailsService())
+                )
                 .csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
