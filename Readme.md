@@ -53,6 +53,10 @@ a button that link to the admin page.
 
 The endpoints are protected with roles, eg '/users/reset-password' is protected with the role `ADMIN`.
 
+## V5 remember me
+
+As of V5, I have added remember me functionality. This is done by adding a checkbox to the login form add enable it in the SecurityConfig.
+
 ## Running the example
 
 1. Start your Docker engine.
